@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<head>
+  <title>Optimal Merge Pattern</title>
+  <style>
+    body {
+      font-family: "Segoe UI",Arial, sans-serif;
+      background: linear-gradient(120deg,#e3f2fd, #e0f7fa);
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #004d99;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    }
+    .container1{
+      display: flex;
+    }
+    .section {
+      background:rgba(255, 255, 255, 0.95);
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      margin: 0 10px;
+      box-shadow: 0px 6px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      flex: 1;
+    }
+
+    .section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.15);
+    }
+
+    h2 {
+    color: #004d99;
+    }
+
+    .box-list {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .file-box {
+    padding: 15px;
+    background: linear-gradient(145deg, #bbdefb, #e3f2fd);
+    border: 2px solid #64b5f6;
+    border-radius: 6px;
+    min-width: 50px;
+    text-align: center;
+    font-weight: bold;
+    color: #0d47a1;
+    box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
+    transition: 0.3s;
+  }
+
+  .file-box:hover {
+    transform: scale(1.07);
+    background: linear-gradient(145deg, #90caf9, #e1f5fe);
+  }
+
+  .step-box {
+  background: linear-gradient(135deg, #fff59d, #ffe082, #ffeb3b);
+  border: 2px solid #ffca28;
+  color: #5d4037;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+  .step-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 10px rgba(255, 202, 40, 0.4);
+}
+
+
+    input, button {
+    padding: 10px 15px;
+    margin: 10px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: 0.3s ease;
+  }
+
+    input:focus {
+    border-color: #009688;
+    box-shadow: 0px 0px 6px rgba(0,150,136,0.4);
+  }
+
+  button {
+    background: linear-gradient(135deg, #007bff, #0d47a1);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  button:hover {
+    background: linear-gradient(135deg, #0056b3, #0a3570);
+    transform: scale(1.05);
+  }
+    
+    .container {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .box {
+      padding: 20px;
+      margin: 10px;
+      font-weight: bold;
+      border-radius: 10px;
+      background: linear-gradient(145deg, #bbdefb, #e3f2fd);
+      border: 2px solid #64b5f6;
+      color: #0d47a1;      
+      box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+      min-width: 60px;
+      transition: 0.5s ease;
+    }
+    .highlight {
+    background: #ffc107;
+    transform: scale(1.1);
+  }
+
+  .merged {
+    background: linear-gradient(135deg, #fff59d, #ffe082, #ffeb3b);
+    border: 2px solid #ffca28;
+    color: #5d4037;    
+    font-weight: bold;
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px rgba(38,166,154,0.4);
+  }
+
+  .step {
+    margin-top: 20px;
+    font-size: large;
+    font-weight: bold;
+    color: #444;
+    background: #dbeefe;
+    padding: 10px;
+    border-radius: 6px;
+    border-left: 5px solid #64b5f6;
+    border-right: 5px solid #64b5f6;
+    text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  
+  <h1>OPTIMAL MERGE PATTERN</h1>
+<div class="container1">
+  <div class="section">
+    <h2>🔹 What is Optimal Merge Pattern?</h2>
+    <p>
+      The Optimal Merge Pattern is a technique used to merge multiple sorted files with the minimum total cost.
+      The idea is to always merge the two smallest files first, so the total work (or time) is minimized.
+    </p>
+ 
+
+  
+    <h2>🔹 Example Input Files</h2>
+    <p>Suppose you have the following file sizes:</p>
+    <div class="box-list">
+      <div class="file-box">5</div>
+      <div class="file-box">10</div>
+      <div class="file-box">20</div>
+      <div class="file-box">30</div>
+    </div>
+  
+
+  
+    <h2>🔹 How the Algorithm Works (Step-by-Step)</h2>
+
+    <p><strong>Step 1:</strong> Pick the two smallest files (5 and 10):</p>
+    <div class="box-list">
+      <div class="file-box step-box">5</div>
+      <div class="file-box step-box">10</div>
+      <div class="file-box">20</div>
+      <div class="file-box">30</div>
+    </div>
+    <p>Merge cost = 5 + 10 = 15</p>
+
+    <hr>
+
+    <p><strong>Step 2:</strong> Now the list becomes (15, 20, 30). Again pick the two smallest:</p>
+    <div class="box-list">
+      <div class="file-box step-box">15</div>
+      <div class="file-box step-box">20</div>
+      <div class="file-box">30</div>
+    </div>
+    <p>Merge cost = 15 + 20 = 35</p>
+
+    <hr>
+
+    <p><strong>Step 3:</strong> New list is (30, 35). Merge them:</p>
+    <div class="box-list">
+      <div class="file-box step-box">30</div>
+      <div class="file-box step-box">35</div>
+    </div>
+    <p>Merge cost = 30 + 35 = 65</p>
+
+    <hr>
+
+    <p><strong>Total Cost =</strong> 15 + 35 + 65 = <strong>115</strong></p>
+  </div>
+
+
+  <div class="section" align="center">
+  <h2>Enter file sizes (comma separated):</h2><br><br>
+  <input type="text" id="files" placeholder="e.g. 20,30,10,5">
+  <button onclick="startMerge()">Run Algorithm</button>
+
+  <div class="step" id="stepInfo"></div>
+  <div class="container" id="visualization"></div>
+</div>
+</div>
+  <script>
+    function startMerge() {
+      const input = document.getElementById("files").value;
+      if (!input) {
+        alert("Please enter file sizes!");
+        return;
+      }
+      
+      let files = input.split(",").map(Number).filter(n => !isNaN(n));
+      files.sort((a, b) => a - b);
+
+      const container = document.getElementById("visualization");
+      container.innerHTML = "";
+      displayFiles(files);
+
+      let totalCost = 0;
+      let step = 1;
+
+      function mergeStep() {
+        if (files.length <= 1) {
+          document.getElementById("stepInfo").innerText = `✅ Done! Total Merge Cost = ${totalCost}`;
+          return;
+        }
+
+        // Take two smallest
+        files.sort((a, b) => a - b);
+        let first = files.shift();
+        let second = files.shift();
+
+        let merged = first + second;
+        totalCost += merged;
+        files.push(merged);
+
+        document.getElementById("stepInfo").innerText = 
+          `Step ${step++}: Merge ${first} and ${second} → Cost = ${merged}`;
+
+        container.innerHTML = "";
+        displayFiles(files, [merged]);
+        
+        setTimeout(mergeStep, 2000); // delay for animation
+      }
+
+      mergeStep();
+    }
+
+    function displayFiles(files, highlight = []) {
+      const container = document.getElementById("visualization");
+      files.sort((a, b) => a - b);
+      files.forEach(f => {
+        let div = document.createElement("div");
+        div.classList.add("box");
+        if (highlight.includes(f)) {
+          div.classList.add("merged");
+        }
+        div.innerText = f;
+        container.appendChild(div);
+      });
+    }
+  </script>
+
+</body>
+
+
+
+  <footer>
+    Optimal Merge Pattern Visualization
+  </footer>
+
+</body>
+</html>
